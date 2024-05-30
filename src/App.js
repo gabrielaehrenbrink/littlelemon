@@ -1,15 +1,19 @@
 import Header from './Components/Header';
 import Nav from './Components/Nav';
-import Main from './Components/Main';
+import Testimonials from './Components/Testimonials'
 import Footer from './Components/Footer';
+import Specials from './Components/Specials'
+import About from './Components/About'
 import './App.css';
 
 function App() {
   return (
     <>
-      <Header />
       <Nav />
-      <Main />
+      <Header />
+      <Specials />
+      <Testimonials />
+      <About />
       <Footer />
     </>
   );
