@@ -5,6 +5,7 @@ import Testimonials from './Components/Testimonials'
 import Footer from './Components/Footer';
 import Specials from './Components/Specials'
 import About from './Components/About'
+import BookingPage from './Components/BookingPage'
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/specials" element={<Specials />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/about" element={<About />} />
+        <Route path="/booking" element={<BookingPage />} />
       </Routes>
       <Footer />
     </Router>

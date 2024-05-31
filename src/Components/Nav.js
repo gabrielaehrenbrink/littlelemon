@@ -30,7 +30,7 @@ function Nav() {
         </li>
 
         <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
-          <a href="/reservations" className="text-black no-underline">Reservations</a>
+          <a href="/booking" className="text-black no-underline">Reservations</a>
         </li>
 
         <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">

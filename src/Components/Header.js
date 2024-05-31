@@ -1,11 +1,22 @@
 import * as React from "react";
+import { useNavigate } from 'react-router-dom';
 
 function ReserveButton() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/booking');
+  };
+
   return (
     <button
+
+
       className="justify-center px-10 py-6 mt-20 text-lg text-center text-black bg-yellow-400 rounded-xl max-md:px-5 max-md:mt-10"
       tabIndex="0"
+      onClick={handleClick}
     >
+
       Reserve a Table
     </button>
   );
