@@ -7,7 +7,7 @@ const MenuItem = ({ imgSrc, imgAlt, title, price, description, orderImgSrc, orde
           loading="lazy"
           src={imgSrc}
           alt={imgAlt}
-          className="w-full border border-black border-solid aspect-[1.43] rounded-t-lg"
+          className="w-full aspect-[1.43] rounded-t-lg"
         />
         <div className="flex flex-col px-6 py-7 w-full bg-zinc-100 max-md:px-5 rounded-b-lg h-full">
           <div className="flex gap-5 justify-between whitespace-nowrap">
@@ -27,11 +27,11 @@ const MenuItem = ({ imgSrc, imgAlt, title, price, description, orderImgSrc, orde
 function Specials() {
   const menuItems = [
     {
-      imgSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/f36690a06b2e978f4f3f271f522eb521c0a94c2542b4f43b389fe30e50085fff?apiKey=f2d9609ea8e54563ae48be2a04ee102f&",
+      imgSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/2d66006373ee52416c1b3d660cc815baf58536dd89a128f9b51ee2c9bee2ef5f?apiKey=f2d9609ea8e54563ae48be2a04ee102f&",
       imgAlt: "A bowl of Greek salad",
       title: "Greek salad",
       price: "$12.99",
-      description: "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons.",
+      description: "The famous greek salad of crispy lettuce, peppers, olives and Chicago style feta cheese, garnished with crunchy garlic croutons.",
       orderImgSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/f147dfbac3a81be096471d722d38b125be94b9c31fe8ab5f63aa85ed872df2c6?apiKey=f2d9609ea8e54563ae48be2a04ee102f&",
       orderImgAlt: "Order Greek salad"
     },
@@ -45,7 +45,7 @@ function Specials() {
       orderImgAlt: "Order Bruschetta" 
     },
     {
-      imgSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/5b4aa918814fbff55c7ac41dc5beece303fea935c1a54b5b6c6c14a4aa82873f?apiKey=f2d9609ea8e54563ae48be2a04ee102f&",
+      imgSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/7fc32d2a4a4f9ce0b01455089f03706e903c4d0c995fa7a5855cd664d4c60f3a?apiKey=f2d9609ea8e54563ae48be2a04ee102f&",
       imgAlt: "A serving of Lemon Dessert",
       title: "Lemon Dessert",
       price: "$5.00",
@@ -56,7 +56,7 @@ function Specials() {
   ];
 
   return (
-    <div className="flex flex-col max-w-[858px] mx-auto mt-16">
+    <div className="flex flex-col max-w-[858px] mx-auto mt-28 mb-10">
       <header className="flex gap-5 px-5 w-full text-black max-md:flex-wrap max-md:max-w-full">
         <h1 className="flex-auto my-auto text-4xl font-medium">Specials</h1>
         <div className="flex flex-col justify-center text-lg text-center">
