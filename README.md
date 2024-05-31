@@ -27,3 +27,11 @@ Little Lemon is a restaurant that aims to provide a seamless online experience f
 - **Jest & React Testing Library:** For unit testing the application. (To be added)
 
 
+## Application
+
+|   Image    |
+|:------------:|
+| ![](public/little_lemon_header.png)|
+| ![](public/little_lemon_specials.png)|
+| ![](public/little_lemon_testimonials.png)|
+| ![](public/little_lemon_about.png)|

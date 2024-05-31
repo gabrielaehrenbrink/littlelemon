@@ -19,8 +19,7 @@ function Overview() {
         <span className="text-3xl leading-10 text-white max-md:block">London</span>
       </h1>
       <p className="mt-7 text-xl leading-7">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+      Experience the vibrant flavors and warm hospitality of Little Lemon, your Mediterranean oasis in the heart of London.
       </p>
       <ReserveButton />
     </section>

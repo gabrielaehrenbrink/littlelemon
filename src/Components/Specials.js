@@ -56,7 +56,7 @@ function Specials() {
   ];
 
   return (
-    <div className="flex flex-col max-w-[858px] mx-auto mt-28 mb-10">
+    <div className="flex flex-col max-w-[858px] mx-auto mt-36 mb-10">
       <header className="flex gap-5 px-5 w-full text-black max-md:flex-wrap max-md:max-w-full">
         <h1 className="flex-auto my-auto text-4xl font-medium">Specials</h1>
         <div className="flex flex-col justify-center text-lg text-center">
