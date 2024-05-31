@@ -7,7 +7,9 @@ function NavigationLinks({ title, items }) {
       <ul className="mt-2 font-medium leading-7 text-white">
         {items.map((item, index) => (
           <li key={index} className="mt-2">
-            {item}
+            <a href={`/${item.toLowerCase().replace(/ /g, "-")}`} className="hover:underline">
+              {item}
+            </a>
           </li>
         ))}
       </ul>
@@ -39,9 +41,11 @@ function DoormatNavigation() {
 
 function Footer() {
   return (
-    <main className="flex justify-center items-center px-16 py-16 bg-custom-green md:px-5">
-      <img src="/Logo .png" alt="Little Lemon Logo" className="w-36 h-auto" />
-      <div className="max-w-full w-[886px]">
+    <main className="flex flex-col md:flex-row justify-center items-center px-4 py-8 bg-custom-green">
+      <div className="w-36 h-18 overflow-hidden">
+       <img src="/Logo2.png" alt="Little Lemon Logo" className="w-full h-full object-cover" style={{ maxWidth: '40px', maxHeight: '55px' }} />
+   </div>
+      <div className="max-w-full w-[886px] mt-8 md:mt-0 md:ml-8">
         <div className="flex flex-wrap gap-5">
           <DoormatNavigation />
           <ContactDetails />
