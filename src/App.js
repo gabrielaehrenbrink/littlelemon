@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Components/Header';
 import Nav from './Components/Nav';
 import Testimonials from './Components/Testimonials'
@@ -8,14 +9,24 @@ import './App.css';
 
 function App() {
   return (
-    <>
+    <Router>
       <Nav />
-      <Header />
-      <Specials />
-      <Testimonials />
-      <About />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Header />
+            <Specials />
+            <Testimonials />
+            <About />
+          </>
+        } />
+        <Route path="/home" element={<Header />} />
+        <Route path="/specials" element={<Specials />} />
+        <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   );
 }
 

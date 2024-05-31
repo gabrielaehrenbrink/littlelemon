@@ -19,26 +19,26 @@ function Nav() {
       </div>
       <ul className={`flex-col md:flex md:flex-row list-none m-0 p-5 md:p-0 overflow-hidden ${isOpen ? 'block' : 'hidden'} md:flex`}>
         <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
-          <a href="#home" className="text-black no-underline">Home</a>
+          <a href="/" className="text-black no-underline">Home</a>
         </li>
         <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
-          <a href="#about" className="text-black no-underline">About</a>
-        </li>
-
-        <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
-          <a href="#menu" className="text-black no-underline">Menu</a>
+          <a href="/about" className="text-black no-underline">About</a>
         </li>
 
         <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
-          <a href="#reservations" className="text-black no-underline">Reservations</a>
+          <a href="/specials" className="text-black no-underline">Menu</a>
         </li>
 
         <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
-          <a href="#order" className="text-black no-underline">Order Online</a>
+          <a href="/reservations" className="text-black no-underline">Reservations</a>
         </li>
 
         <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
-          <a href="#login" className="text-black no-underline">Login</a>
+          <a href="/testimonials" className="text-black no-underline">Testimonials</a>
+        </li>
+
+        <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
+          <a href="/login" className="text-black no-underline">Login</a>
         </li>
 
       </ul>

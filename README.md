@@ -21,9 +21,9 @@ Little Lemon is a restaurant that aims to provide a seamless online experience f
 
 ## Technologies Used
 
-- **React:** A JavaScript library for building user interfaces.
-- **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
-- **React Slick:** A carousel component for React to display testimonials.
+- **React:** 
+- **Tailwind CSS:** 
+- **React Slick:** 
 - **Jest & React Testing Library:** For unit testing the application. (To be added)
 
 
