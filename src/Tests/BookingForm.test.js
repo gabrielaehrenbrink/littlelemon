@@ -31,6 +31,53 @@ describe('BookingForm', () => {
     expect(getByLabelText('Occasion')).toBeInTheDocument();
   });
 
+  it('has the correct attributes for Choose date input', () => {
+    const { getByLabelText } = render(
+      <Router>
+        <BookingForm availableTimes={availableTimes} dispatch={mockDispatch} />
+      </Router>
+    );
+    const dateInput = getByLabelText('Choose date');
+    expect(dateInput).toHaveAttribute('type', 'date');
+    expect(dateInput).toHaveAttribute('required');
+    expect(dateInput).toHaveClass('p-2 border border-gray-300 rounded');
+  });
+
+  it('has the correct attributes for Choose time select', () => {
+    const { getByLabelText } = render(
+      <Router>
+        <BookingForm availableTimes={availableTimes} dispatch={mockDispatch} />
+      </Router>
+    );
+    const timeSelect = getByLabelText('Choose time');
+    expect(timeSelect).toHaveAttribute('required');
+    expect(timeSelect).toHaveClass('p-2 border border-gray-300 rounded');
+  });
+
+  it('has the correct attributes for Number of guests input', () => {
+    const { getByLabelText } = render(
+      <Router>
+        <BookingForm availableTimes={availableTimes} dispatch={mockDispatch} />
+      </Router>
+    );
+    const guestsInput = getByLabelText('Number of guests');
+    expect(guestsInput).toHaveAttribute('type', 'number');
+    expect(guestsInput).toHaveAttribute('placeholder', '1');
+    expect(guestsInput).toHaveAttribute('min', '1');
+    expect(guestsInput).toHaveAttribute('max', '10');
+    expect(guestsInput).toHaveClass('p-2 border border-gray-300 rounded');
+  });
+
+  it('has the correct attributes for Occasion select', () => {
+    const { getByLabelText } = render(
+      <Router>
+        <BookingForm availableTimes={availableTimes} dispatch={mockDispatch} />
+      </Router>
+    );
+    const occasionSelect = getByLabelText('Occasion');
+    expect(occasionSelect).toHaveClass('p-2 border border-gray-300 rounded');
+  });
+
   it('submits the form with valid data', async () => {
     submitAPI.mockImplementation(() => true); // Mock API to return true
     const { getByLabelText, getByText } = render(
@@ -67,6 +114,70 @@ describe('BookingForm', () => {
     fireEvent.change(getByLabelText('Occasion'), { target: { value: 'Birthday' } });
     fireEvent.click(getByText('Make Your Reservation'));
 
-    await waitFor(() => expect(getByRole('alert')).toHaveTextContent('Reservation failed. Please try again.'));
+    await waitFor(() => expect.toHaveTextContent('Please correct the errors above before submitting.'));
+  });
+
+  it('shows error message for invalid date input', async () => {
+    const { getByLabelText, getByText, getByRole } = render(
+      <Router>
+        <BookingForm availableTimes={availableTimes} dispatch={mockDispatch} />
+      </Router>
+    );
+
+    fireEvent.change(getByLabelText('Choose date'), { target: { value: '' } });
+    fireEvent.change(getByLabelText('Choose time'), { target: { value: '12:00' } });
+    fireEvent.change(getByLabelText('Number of guests'), { target: { value: '3' } });
+    fireEvent.change(getByLabelText('Occasion'), { target: { value: 'Birthday' } });
+    fireEvent.click(getByText('Make Your Reservation'));
+
+    await waitFor(() => expect(getByRole('alert')).toHaveTextContent('Date is required.'));
+  });
+
+  it('shows error message for invalid time input', async () => {
+    const { getByLabelText, getByText, getByRole } = render(
+      <Router>
+        <BookingForm availableTimes={availableTimes} dispatch={mockDispatch} />
+      </Router>
+    );
+
+    fireEvent.change(getByLabelText('Choose date'), { target: { value: '2023-10-10' } });
+    fireEvent.change(getByLabelText('Choose time'), { target: { value: '' } });
+    fireEvent.change(getByLabelText('Number of guests'), { target: { value: '3' } });
+    fireEvent.change(getByLabelText('Occasion'), { target: { value: 'Birthday' } });
+    fireEvent.click(getByText('Make Your Reservation'));
+
+    await waitFor(() => expect(getByRole('alert')).toHaveTextContent('Time is required.'));
+  });
+
+  it('shows error message for invalid guests input', async () => {
+    const { getByLabelText, getByText, getByRole } = render(
+      <Router>
+        <BookingForm availableTimes={availableTimes} dispatch={mockDispatch} />
+      </Router>
+    );
+
+    fireEvent.change(getByLabelText('Choose date'), { target: { value: '2023-10-10' } });
+    fireEvent.change(getByLabelText('Choose time'), { target: { value: '12:00' } });
+    fireEvent.change(getByLabelText('Number of guests'), { target: { value: '0' } });
+    fireEvent.change(getByLabelText('Occasion'), { target: { value: 'Birthday' } });
+    fireEvent.click(getByText('Make Your Reservation'));
+
+    await waitFor(() => expect(getByRole('alert')).toHaveTextContent('Guests must be more than 0.'));
+  });
+
+  it('shows error message for invalid occasion input', async () => {
+    const { getByLabelText, getByText, getByRole } = render(
+      <Router>
+        <BookingForm availableTimes={availableTimes} dispatch={mockDispatch} />
+      </Router>
+    );
+
+    fireEvent.change(getByLabelText('Choose date'), { target: { value: '2023-10-10' } });
+    fireEvent.change(getByLabelText('Choose time'), { target: { value: '12:00' } });
+    fireEvent.change(getByLabelText('Number of guests'), { target: { value: '3' } });
+    fireEvent.change(getByLabelText('Occasion'), { target: { value: '' } });
+    fireEvent.click(getByText('Make Your Reservation'));
+
+    await waitFor(() => expect(getByRole('alert')).toHaveTextContent('Occasion is required.'));
   });
 });
