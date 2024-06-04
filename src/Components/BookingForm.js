@@ -1,9 +1,13 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
+import { submitAPI } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 function BookingForm({ availableTimes, dispatch }) {
 
+    const navigate = useNavigate();
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
+
     const [guests, setGuests] = useState(1);
     const [occasion, setOccasion] = useState('');
 
@@ -13,12 +17,17 @@ function BookingForm({ availableTimes, dispatch }) {
         dispatch({ type: 'UPDATE_TIMES', date: newDate });
     };
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`Reservation made for ${guests} guest(s) on ${date} at ${time} for ${occasion}`);
-        // Add your form submission logic here
-    }
+        const formData = { date, time, guests, occasion };
+        if (submitAPI(formData)) {
+          //  alert(`Reservation made for ${guests} guest(s) on ${date} at ${time} for ${occasion}`);
+          navigate('/confirmed', { state: { details: formData } });
+        } else {
+            alert('Reservation failed. Please try again.');
+
+        }
+    };
 
     return (
         <form onSubmit={handleSubmit} className="grid max-w-md mx-auto p-6 gap-6 bg-gray-50 border border-gray-200 rounded-lg">

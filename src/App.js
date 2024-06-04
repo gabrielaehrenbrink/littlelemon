@@ -8,12 +8,19 @@ import Specials from './Components/Specials'
 import About from './Components/About'
 import BookingPage from './Components/BookingPage'
 import './App.css';
+import { fetchAPI } from './api';
+import ConfirmedBooking from './Components/ConfirmedBooking';
 
 const initializeTimes = () => (['17:00', '18:00', '19:00', '20:00', '21:00', '22:00']);
 
 const updateTimes = (state, action) => {
-    // For now, return the same times regardless of the date
-    return state;
+  switch (action.type) {
+      case 'UPDATE_TIMES':
+          const newTimes = fetchAPI(new Date(action.date));
+          return newTimes;
+      default:
+          return state;
+  }
 };
 
 function App() {
@@ -37,6 +44,7 @@ function App() {
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/about" element={<About />} />
         <Route path="/booking" element={<BookingPage availableTimes={availableTimes} dispatch={dispatch} />} />
+        <Route path="/confirmed" element={<ConfirmedBooking />} />
       </Routes>
       <Footer />
     </Router>
