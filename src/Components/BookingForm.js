@@ -19,6 +19,9 @@ function BookingForm({ availableTimes, dispatch }) {
             case 'time':
                 return value ? '' : 'Time is required.';
             case 'guests':
+                if (value > 10) {
+                    return 'For groups larger than 10, please contact the restaurant.';
+                }
                 return value > 0 ? '' : 'Guests must be more than 0.';
             case 'occasion':
                 return value ? '' : 'Occasion is required.';
@@ -66,70 +69,86 @@ function BookingForm({ availableTimes, dispatch }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="grid max-w-md mx-auto p-6 gap-6 bg-gray-50 border border-gray-200 rounded-lg">
+        <form onSubmit={handleSubmit} className="grid max-w-4xl mx-auto p-8 gap-8 bg-white border border-gray-200 rounded-lg shadow-lg">
             {errorMessage.form && <div role="alert" className="text-red-500">{errorMessage.form}</div>}
             
-            <label htmlFor="res-date" className="font-bold">Choose date</label>
-            <input 
-                type="date" 
-                id="res-date" 
-                value={date} 
-                onChange={handleDateChange} 
-                className="p-2 border border-gray-300 rounded" 
-                required 
-                aria-label="Choose date"
-            />
-            {formSubmitted && errorMessage.date && <div role="alert" className="text-red-500">{errorMessage.date}</div>}
+            <fieldset className="space-y-4">
+                <legend className="font-bold text-xl">Reservation Details</legend>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="res-date" className="font-bold">Choose date</label>
+                    <input 
+                        type="date" 
+                        id="res-date" 
+                        value={date} 
+                        onChange={handleDateChange} 
+                        className="p-3 border border-gray-300 rounded" 
+                        required 
+                        aria-label="Choose date"
+                        aria-describedby="date-error"
+                    />
+                    {formSubmitted && errorMessage.date && <div id="date-error" role="alert" className="text-red-500">{errorMessage.date}</div>}
+                </div>
+                
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="res-time" className="font-bold">Choose time</label>
+                    <select 
+                        id="res-time" 
+                        value={time} 
+                        onChange={e => setTime(e.target.value)} 
+                        className="p-3 border border-gray-300 rounded" 
+                        required 
+                        aria-label="Choose time"
+                        aria-describedby="time-error"
+                    >
+                        <option value="" disabled={time !== ''}>Select a time</option>
+                        {availableTimes.map(timeOption => (
+                            <option key={timeOption} value={timeOption}>{timeOption}</option>
+                        ))}
+                    </select>
+                    {formSubmitted && errorMessage.time && <div id="time-error" role="alert" className="text-red-500">{errorMessage.time}</div>}
+                </div>
+            </fieldset>
             
-            <label htmlFor="res-time" className="font-bold">Choose time</label>
-            <select 
-                id="res-time" 
-                value={time} 
-                onChange={e => setTime(e.target.value)} 
-                className="p-2 border border-gray-300 rounded" 
-                required 
-                aria-label="Choose time"
-            >
-                <option value="" disabled={time !== ''}>Select a time</option>
-                {availableTimes.map(timeOption => (
-                    <option key={timeOption} value={timeOption}>{timeOption}</option>
-                ))}
-            </select>
-            {formSubmitted && errorMessage.time && <div role="alert" className="text-red-500">{errorMessage.time}</div>}
-            
-            <label htmlFor="guests" className="font-bold">Number of guests</label>
-            <input 
-                type="number" 
-                placeholder="1" 
-                min="1" 
-                max="10" 
-                id="guests" 
-                value={guests} 
-                onChange={e => setGuests(e.target.value)} 
-                className="p-2 border border-gray-300 rounded" 
-                required 
-                aria-label="Number of guests"
-            />
-            {formSubmitted && errorMessage.guests && <div role="alert" className="text-red-500">{errorMessage.guests}</div>}
-            
-            <label htmlFor="occasion" className="font-bold">Occasion</label>
-            <select 
-                id="occasion" 
-                value={occasion} 
-                onChange={e => setOccasion(e.target.value)} 
-                className="p-2 border border-gray-300 rounded" 
-                aria-label="Occasion"
-            >
-                <option value="">Select an occasion</option>
-                <option value="Birthday">Birthday</option>
-                <option value="Anniversary">Anniversary</option>
-                <option value="Work">Work Event</option>
-                <option value="Other">Other</option>
-            </select>
-            {formSubmitted && errorMessage.occasion && <div role="alert" className="text-red-500">{errorMessage.occasion}</div>}
+            <fieldset className="space-y-4">
+            <div className="flex flex-col gap-2">
+                <label htmlFor="guests" className="font-bold">Number of people</label>
+                <input 
+                    type="number" 
+                    placeholder="1" 
+                    min="1" 
+                    id="guests" 
+                    value={guests} 
+                    onChange={e => setGuests(parseInt(e.target.value, 10))} 
+                    className="p-3 border border-gray-300 rounded" 
+                    required 
+                    aria-label="Number of guests"
+                    aria-describedby="guests-error"
+                />
+                {formSubmitted && errorMessage.guests && <div id="guests-error" role="alert" className="text-red-500">{errorMessage.guests}</div>}
+            </div>
+                
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="occasion" className="font-bold">Occasion</label>
+                    <select 
+                        id="occasion" 
+                        value={occasion} 
+                        onChange={e => setOccasion(e.target.value)} 
+                        className="p-3 border border-gray-300 rounded" 
+                        aria-label="Occasion"
+                        aria-describedby="occasion-error"
+                    >
+                        <option value="">Select an occasion</option>
+                        <option value="Birthday">Birthday</option>
+                        <option value="Anniversary">Anniversary</option>
+                        <option value="Work">Work Event</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    {formSubmitted && errorMessage.occasion && <div id="occasion-error" role="alert" className="text-red-500">{errorMessage.occasion}</div>}
+                </div>
+            </fieldset>
             
             <input type="submit" value="Make Your Reservation" 
-                className="p-2 text-white font-medium rounded cursor-pointer bg-custom-green hover:bg-yellow-400"
+                className="p-3 text-white font-medium rounded cursor-pointer bg-custom-green hover:bg-yellow-400 transition-colors"
             />
         </form>
     );

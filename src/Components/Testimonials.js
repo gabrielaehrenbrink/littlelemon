@@ -5,15 +5,15 @@ const TestimonialCard = ({ rating, userpic, name, text }) => {
     return (
         <article className="flex flex-col grow justify-center pb-6 text-sm text-black max-md:mt-5 h-[350px] w-[300px]"> 
             <div className="flex flex-row items-start py-12 pr-8 pl-8 w-full bg-white max-md:px-6 h-full">
-                <div className="flex-shrink-0">
-                    {userpic && <img src={userpic} alt="userpic" className="w-32 h-32 rounded-full object-cover" />}
-                </div>
+                <figure className="flex-shrink-0">
+                    {userpic && <img src={userpic} alt={`${name}'s profile`} className="w-32 h-32 rounded-full object-cover" />}
+                </figure>
                 <div className="flex flex-col flex-grow pl-4">
-                    <div className="flex flex-col">
-                        <div className="text-lg font-bold">{rating}</div>
-                        <div className="text-xl font-bold">{name}</div>
-                    </div>
-                    <p className="mt-4 text-lg overflow-hidden">{text}</p>
+                    <header>
+                        <div className="text-lg font-bold" aria-label={`Rating: ${rating}`}>{rating}</div>
+                        <div className="text-xl font-bold" aria-label={`Name: ${name}`}>{name}</div>
+                    </header>
+                    <p className="mt-4 text-lg overflow-hidden" aria-label={`Testimonial text: ${text}`}>{text}</p>
                 </div>
             </div>
         </article>
@@ -47,13 +47,13 @@ function Testimonials() {
     };
 
     return (
-        <section className="flex justify-center items-center px-16 py-32 bg-custom-green max-md:px-5">
+        <section className="flex justify-center items-center px-16 py-32 bg-custom-green max-md:px-5" aria-label="Customer testimonials">
             <div className="flex flex-col mt-14 max-w-full w-[860px] max-md:mt-10">
                 <h2 className="self-center text-4xl font-medium text-yellow-400">Testimonials</h2>
                 <div className="mt-10 max-md:mt-10 max-md:max-w-full">
-                    <Slider {...settings}>
+                    <Slider {...settings} aria-label="Testimonials slider">
                         {testimonials.map((testimonial, index) => (
-                            <div className="px-16" key={index}>
+                            <div className="px-16" key={index} role="group" aria-label={`Testimonial from ${testimonial.name}`}>
                                 <TestimonialCard
                                     rating={testimonial.rating}
                                     userpic={testimonial.userpic}
