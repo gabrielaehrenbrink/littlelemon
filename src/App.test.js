@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from 'react-router-dom';
+import App from '../src/App';
 
-test('renders learn react link', () => {
+test('renders without crashing', () => {
+    render(<App />);
+});
+
+test('contains navigation links', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText("Specials")).toBeInTheDocument();
 });
