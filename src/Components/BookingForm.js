@@ -7,7 +7,7 @@ function BookingForm({ availableTimes, dispatch }) {
     const navigate = useNavigate();
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
-
+    const [errorMessage, setErrorMessage] = useState('');
     const [guests, setGuests] = useState(1);
     const [occasion, setOccasion] = useState('');
 
@@ -24,13 +24,14 @@ function BookingForm({ availableTimes, dispatch }) {
           //  alert(`Reservation made for ${guests} guest(s) on ${date} at ${time} for ${occasion}`);
           navigate('/confirmed', { state: { details: formData } });
         } else {
-            alert('Reservation failed. Please try again.');
+            setErrorMessage('Reservation failed. Please try again.');
 
         }
     };
 
     return (
         <form onSubmit={handleSubmit} className="grid max-w-md mx-auto p-6 gap-6 bg-gray-50 border border-gray-200 rounded-lg">
+             {errorMessage && <div role="alert" className="text-red-500">{errorMessage}</div>}
             <label htmlFor="res-date" className="font-bold">Choose date</label>
             <input 
                 type="date" 

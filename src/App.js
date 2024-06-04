@@ -44,7 +44,7 @@ function App() {
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/about" element={<About />} />
         <Route path="/booking" element={<BookingPage availableTimes={availableTimes} dispatch={dispatch} />} />
-        <Route path="/confirmed" element={<ConfirmedBooking />} />
+        <Route path="/confirmed" element={<ConfirmedBooking  />} />
       </Routes>
       <Footer />
     </Router>
