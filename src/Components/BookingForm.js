@@ -115,7 +115,8 @@ function BookingForm({ availableTimes, dispatch }) {
                 <input 
                     type="number" 
                     placeholder="1" 
-                    min="1" 
+                    min="1"
+                    max="10" 
                     id="guests" 
                     value={guests} 
                     onChange={e => setGuests(parseInt(e.target.value, 10))} 

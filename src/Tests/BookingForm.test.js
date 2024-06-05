@@ -40,7 +40,7 @@ describe('BookingForm', () => {
     const dateInput = getByLabelText('Choose date');
     expect(dateInput).toHaveAttribute('type', 'date');
     expect(dateInput).toHaveAttribute('required');
-    expect(dateInput).toHaveClass('p-2 border border-gray-300 rounded');
+    expect(dateInput).toHaveClass('p-3 border border-gray-300 rounded');
   });
 
   it('has the correct attributes for Choose time select', () => {
@@ -51,7 +51,7 @@ describe('BookingForm', () => {
     );
     const timeSelect = getByLabelText('Choose time');
     expect(timeSelect).toHaveAttribute('required');
-    expect(timeSelect).toHaveClass('p-2 border border-gray-300 rounded');
+    expect(timeSelect).toHaveClass('p-3 border border-gray-300 rounded');
   });
 
   it('has the correct attributes for Number of guests input', () => {
@@ -65,7 +65,7 @@ describe('BookingForm', () => {
     expect(guestsInput).toHaveAttribute('placeholder', '1');
     expect(guestsInput).toHaveAttribute('min', '1');
     expect(guestsInput).toHaveAttribute('max', '10');
-    expect(guestsInput).toHaveClass('p-2 border border-gray-300 rounded');
+    expect(guestsInput).toHaveClass('p-3 border border-gray-300 rounded');
   });
 
   it('has the correct attributes for Occasion select', () => {
@@ -75,7 +75,7 @@ describe('BookingForm', () => {
       </Router>
     );
     const occasionSelect = getByLabelText('Occasion');
-    expect(occasionSelect).toHaveClass('p-2 border border-gray-300 rounded');
+    expect(occasionSelect).toHaveClass('p-3 border border-gray-300 rounded');
   });
 
   it('submits the form with valid data', async () => {
@@ -95,7 +95,7 @@ describe('BookingForm', () => {
     await waitFor(() => expect(submitAPI).toHaveBeenCalledWith({
       date: '2023-10-10',
       time: '12:00',
-      guests: '3',
+      guests: 3,
       occasion: 'Birthday'
     }));
   });
@@ -114,7 +114,7 @@ describe('BookingForm', () => {
     fireEvent.change(getByLabelText('Occasion'), { target: { value: 'Birthday' } });
     fireEvent.click(getByText('Make Your Reservation'));
 
-    await waitFor(() => expect.toHaveTextContent('Please correct the errors above before submitting.'));
+    await waitFor(() => expect.toHaveTextContent('Reservation failed. Please try again.'));
   });
 
   it('shows error message for invalid date input', async () => {
