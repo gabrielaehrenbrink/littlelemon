@@ -35,3 +35,7 @@ Little Lemon is a restaurant that aims to provide a seamless online experience f
 | ![](public/little_lemon_specials.png)|
 | ![](public/little_lemon_testimonials.png)|
 | ![](public/little_lemon_about.png)|
+| ![](public/reservation1.png)|
+| ![](public/reservation2.png)|
+| ![](public/confirmation.png)|
+
