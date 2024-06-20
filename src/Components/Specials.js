@@ -1,28 +1,25 @@
 import * as React from "react";
+import MenuItem from "./MenuItem";
+import { useNavigate } from 'react-router-dom';
 
-const MenuItem = ({ imgSrc, imgAlt, title, price, description, orderImgSrc, orderImgAlt }) => (
-    <article className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full overflow-hidden h-full">
-      <div className="flex flex-col grow max-md:mt-8">
-        <img
-          loading="lazy"
-          src={imgSrc}
-          alt={imgAlt}
-          className="w-full aspect-[1.43] rounded-t-lg"
-        />
-        <div className="flex flex-col px-6 py-7 w-full bg-zinc-100 max-md:px-5 rounded-b-lg h-full">
-          <div className="flex gap-5 justify-between whitespace-nowrap">
-            <h2 className="text-2xl font-medium leading-5 text-black text-ellipsis overflow-hidden whitespace-nowrap">{title}</h2>
-            <div className="text-base font-bold text-orange-300">{price}</div>
-          </div>
-          <p className="mt-9 text-base text-gray-600 overflow-hidden text-ellipsis">{description}</p>
-          <div className="flex gap-3.5 mt-8 text-base font-bold text-zinc-800">
-            <div className="flex-auto">Order a delivery</div>
-            <img loading="lazy" src={orderImgSrc} alt={orderImgAlt} className="shrink-0 self-start w-4 aspect-[1.45]" />
-          </div>
-        </div>
-      </div>
-    </article>
+function MenuButton() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/menu');
+  };
+
+  return (
+    <button
+      className="justify-center px-12 py-6 bg-yellow-400 rounded-xl max-md:px-5"
+      tabIndex="0"
+      onClick={handleClick}
+      aria-label="Go to the full menu"
+    >
+      Online Menu
+    </button>
   );
+}
 
 function Specials() {
   const menuItems = [
@@ -60,15 +57,15 @@ function Specials() {
       <header className="flex gap-5 px-5 w-full text-black max-md:flex-wrap max-md:max-w-full">
         <h1 className="flex-auto my-auto text-4xl font-medium">Specials</h1>
         <div className="flex flex-col justify-center text-lg text-center">
-          <button className="justify-center px-12 py-6 bg-yellow-400 rounded-xl max-md:px-5">
-            Online Menu
-          </button>
+          <MenuButton />
         </div>
       </header>
       <section className="px-5 mt-14 w-full max-md:mt-10 max-md:max-w-full">
-        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {menuItems.map((item, index) => (
-            <MenuItem key={index} {...item} />
+            <div key={index} className="w-full">
+              <MenuItem {...item} />
+            </div>
           ))}
         </div>
       </section>

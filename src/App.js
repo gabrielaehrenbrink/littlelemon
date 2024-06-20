@@ -7,6 +7,7 @@ import Footer from './Components/Footer';
 import Specials from './Components/Specials'
 import About from './Components/About'
 import BookingPage from './Components/BookingPage'
+import Menu from './Components/Menu';
 import './App.css';
 import { fetchAPI } from './api';
 import ConfirmedBooking from './Components/ConfirmedBooking';
@@ -41,6 +42,7 @@ function App() {
         } />
         <Route path="/home" element={<Header />} />
         <Route path="/specials" element={<Specials />} />
+        <Route path="/menu" element={<Menu />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/about" element={<About />} />
         <Route path="/booking" element={<BookingPage availableTimes={availableTimes} dispatch={dispatch} />} />

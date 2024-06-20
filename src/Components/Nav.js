@@ -26,7 +26,7 @@ function Nav() {
         </li>
 
         <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
-          <a href="/specials" className="text-black no-underline">Menu</a>
+          <a href="/menu" className="text-black no-underline">Menu</a>
         </li>
 
         <li className="block text-center px-4 py-3 text-lg font-medium text-custom-green capitalize">
